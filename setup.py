@@ -4,11 +4,11 @@ setup(
     name='projinit',
     version='1.0.0',
     author='Srijan',
-    author_email='your.email@example.com',
+    author_email='srijanbahal.work@example.com',
     description='🛠️ Generate full project structures from markdown blueprints.',
     long_description=open('README.md', encoding='utf-8').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/projinit',
+    url='https://github.com/srijanbahal/Projinit',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
