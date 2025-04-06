@@ -1,8 +1,8 @@
-# 🛠️ projinit
+# 🛠️ Structinit
 
-`projinit` is a simple Python CLI tool to generate project folder structures from a markdown blueprint (like `structure.md`).
+`structinit` is a simple Python CLI tool to generate project folder structures from a markdown blueprint (like `structure.md`).
 
-Instead of manually creating folders and files every time, define your project structure once — and let `projinit` scaffold it for you instantly.
+Instead of manually creating folders and files every time, define your project structure once — and let `structinit` scaffold it for you instantly.
 
 ---
 
@@ -18,4 +18,4 @@ Instead of manually creating folders and files every time, define your project s
 ## 📦 Installation
 
 ```bash
-pip install projinit
+pip install structinit

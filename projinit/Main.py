@@ -212,16 +212,34 @@ def load_test_input():
 
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Project Structure Initializer from .md file")
-    parser.add_argument('--file', '-f', type=str, help="Path to the .md structure file")
-    parser.add_argument('--test', action='store_true', help="Run in test mode using test input")
+def main():
+    parser = argparse.ArgumentParser(
+        description="🛠️ Structinit: Generate full project structures from markdown blueprints.",
+        epilog=(
+            "📘 Example usage:\n"
+            "  structinit --file structure.md    # Generate project from structure.md\n"
+            "  structinit --test                 # Run in test mode with preconfigured values"
+        ),
+        formatter_class=argparse.RawTextHelpFormatter
+    )
+
+    parser.add_argument(
+        '--file', '-f',
+        type=str,
+        help="Path to the .md structure file that defines your project layout."
+    )
+
+    parser.add_argument(
+        '--test',
+        action='store_true',
+        help="Run in test mode using predefined test input (for debugging/demo)."
+    )
 
     args = parser.parse_args()
     skip_name = False
 
+    # ---- Test mode ----
     if args.test:
-        # Load test input from test_main.py
         print("🧪 Running in test mode...")
         test_config = load_test_input()
         project_name = test_config['project_name']
@@ -230,13 +248,10 @@ if __name__ == "__main__":
         init_git = test_config['init_git']
         add_license = test_config['add_license']
         skip_name = test_config['skip_name']
-    else:
-        # Normal execution flow
-        if not args.file:
-            raise ValueError("The --file argument is required in normal mode.")
-        preprocess_structure_md(args.file)
 
-        # Detect root name and lines
+    # ---- Normal execution ----
+    elif args.file:
+        preprocess_structure_md(args.file)
         root_name, _, _ = detect_root_name_and_lines(args.file)
 
         if root_name:
@@ -250,6 +265,12 @@ if __name__ == "__main__":
         init_git = input("🌀 Initialize Git repository? (y/n): ").lower().strip() == 'y'
         add_license = input("📜 Add MIT License? (y/n): ").lower().strip() == 'y'
 
+    # ---- No input provided ----
+    else:
+        parser.print_help()
+        return
+
+    # ---- Final config ----
     config = {
         'project_name': project_name,
         'md_path': args.file if not args.test else md_path,
@@ -260,5 +281,7 @@ if __name__ == "__main__":
     }
 
     initialize_project(config)
-
     print("✅ Project structure created successfully.")
+    
+if __name__ == '__main__':
+    main()

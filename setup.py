@@ -1,12 +1,19 @@
+import os
 from setuptools import setup, find_packages
 
+# Read long description from README.md
+long_description = ""
+if os.path.exists("README.md"):
+    with open("README.md", encoding="utf-8") as f:
+        long_description = f.read()
+
 setup(
-    name='projinit',
-    version='1.0.0',
+    name='structinit',  # Updated name
+    version='1.0.1',
     author='Srijan',
     author_email='srijanbahal.work@example.com',
     description='🛠️ Generate full project structures from markdown blueprints.',
-    long_description=open('README.md', encoding='utf-8').read(),
+    long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/srijanbahal/Projinit',
     packages=find_packages(),
@@ -16,7 +23,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'projinit=projinit.main:main'
+            'structinit=projinit.main:main'  # Updated CLI command
         ]
     },
     classifiers=[
@@ -25,4 +32,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    license="MIT",
+    keywords=['project scaffolding', 'markdown', 'CLI', 'automation'],
 )
