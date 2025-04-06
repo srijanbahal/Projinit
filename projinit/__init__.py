@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
-if __name__ == "__main__":
-    # projinit/__init__.py
-    __version__ = "1.0.0"
-    __author__ = "Srijan"
-    
+# Metadata
+__version__ = "1.0.0"
+__author__ = "Srijan"
+
+# Expose key functions
+from .Main import initialize_project, preprocess_structure_md, create_structure_from_md
+
+# Optional: Add any package-level initialization logic here
+
